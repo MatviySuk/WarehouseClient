@@ -11,9 +11,9 @@ struct BaseView: View {
     @ObservedObject private(set) var viewModel: BaseViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if viewModel.isAuth {
-                ContentView()
+                WarehouseView(viewModel: .init(container: viewModel.container))
             } else {
                 AuthView(viewModel: .init(container: viewModel.container))
             }

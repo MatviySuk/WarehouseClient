@@ -32,3 +32,8 @@ extension DIContainer {
     }
 }
 
+extension DIContainer {
+    struct WebRepositories {
+        let warehouseRepository: WarehouseRepository
+    }
+}

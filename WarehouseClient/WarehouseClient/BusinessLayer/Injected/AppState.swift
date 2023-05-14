@@ -7,7 +7,15 @@ import SwiftUI
 import Combine
 
 struct AppState: Equatable {
+    var userData = UserData()
     var auth = Auth()
+}
+
+extension AppState {
+    struct UserData: Equatable {
+        var works: Loadable<[FactWorks]> = .notRequested
+        var loadInfo: LoadInfo = .init(affectedRows: .zero)
+    }
 }
 
 extension AppState {

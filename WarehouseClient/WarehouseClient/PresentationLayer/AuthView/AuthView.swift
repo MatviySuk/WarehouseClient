@@ -11,24 +11,35 @@ struct AuthView: View {
     @ObservedObject private(set) var viewModel: AuthViewModel
 
     var body: some View {
-        VStack(alignment: .center) {
-            Spacer()
-            
-            Text("Авторизація")
-                .font(.title)
-                .padding()
-                .padding(.vertical)
-            
-            TextField("Ім'я користувача: ", text: $viewModel.name)
-                .padding()
-            
-            Button("Вхід") {
-                withAnimation {
-                    viewModel.logIn()
+        GeometryReader { geo in
+            HStack(alignment: .center) {
+                Spacer()
+                
+                VStack(alignment: .center) {
+                    Spacer()
+                    
+                    Text("Authorization")
+                        .font(.title)
+                        .padding()
+                        .padding(.vertical)
+                    
+                    TextField("User Name: ", text: $viewModel.name)
+                        .padding()
+                        .frame(maxWidth: geo.size.width * 0.5)
+                    
+                    Button("Log In") {
+                        withAnimation {
+                            viewModel.logIn()
+                        }
+                    }
+                    .buttonStyle(BorderedButtonStyle())
+                    .padding()
+                    
+                    Spacer()
                 }
-            }.buttonStyle(BorderedButtonStyle())
-            
-            Spacer()
+                
+                Spacer()
+            }
         }
     }
 }
