@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PDFKit
 
 struct WarehouseView: View {    
     @ObservedObject private(set) var viewModel: WarehouseViewModel
@@ -62,8 +63,35 @@ struct WarehouseView: View {
     
     private var sidebarView: some View {
         VStack {
-            Text("Sidebar")
+            if let _ = viewModel.works.value {
+                ShareLink("Export PDF", item: render())
+            }
         }
+    }
+        
+    private func render() -> URL {
+        let renderer = ImageRenderer(content: VStack {
+            WarehouseChartsView(viewModel: .init(container: viewModel.container)).worksContent
+        })
+                
+        let url = URL.documentsDirectory.appending(path: "warehouseCharts.pdf")
+        
+        renderer.render { size, context in
+            var box = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            
+            guard let pdf = CGContext(url as CFURL, mediaBox: &box, nil) else {
+                return
+            }
+            
+            pdf.beginPDFPage(nil)
+            
+            context(pdf)
+            
+            pdf.endPDFPage()
+            pdf.closePDF()
+        }
+        
+        return url
     }
 }
 

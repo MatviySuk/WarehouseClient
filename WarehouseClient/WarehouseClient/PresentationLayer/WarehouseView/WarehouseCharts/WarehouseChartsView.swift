@@ -19,7 +19,7 @@ struct WarehouseChartsView: View {
         }
     }
     
-    @ViewBuilder private var worksContent: some View {
+    @ViewBuilder var worksContent: some View {
         switch viewModel.works {
         case .notRequested:
             worksNotRequestedView
@@ -75,7 +75,7 @@ private extension WarehouseChartsView {
                         y: .value("failedWorksCount", filterWorks.map { $0.failedWorksCount }.reduce(0, +))
                     ).foregroundStyle(by: .value("Work Result", "Failed Works"))
                 }
-            }
+            }.frame(height: 200)
         }
         
         func employeeDelayedTimeChart(_ projectWorks: [FactWorks], _ projectEmployees: [Employee]) -> some View {
@@ -91,7 +91,7 @@ private extension WarehouseChartsView {
                 
                 RuleMark(y: .value("Average Delay", (projectWorks.map { $0.delayedTimeMinutes }.reduce(0, +) / projectEmployees.count)))
                     .foregroundStyle(by: .value("Average Delated Time", "Average Delated Time"))
-            }
+            }.frame(height: 200)
         }
         
         var employeesCharts: some View {
@@ -123,20 +123,18 @@ private extension WarehouseChartsView {
                     .bold()
                 
                 Chart(projectIndstr) { industry in
-                        BarMark(
-                            x: .value("Industry", industry.name),
-                            y: .value("Industry Count", works.filter { $0.project.industry == industry }.map { $0.project }.unique().count)
-                        ).foregroundStyle(by: .value("Projects Count", "Projects Count"))
-                    
-                }
+                    BarMark(
+                        x: .value("Industry", industry.name),
+                        y: .value("Industry Count", works.filter { $0.project.industry == industry }.map { $0.project }.unique().count)
+                    ).foregroundStyle(by: .value("Projects Count", "Projects Count"))
+                }.frame(height: 200)
                 
                 Chart(projectIndstr) { industry in
-                        BarMark(
-                            x: .value("Industry", industry.name),
-                            y: .value("Industry Count", works.filter { $0.project.industry == industry }.unique().count)
-                        ).foregroundStyle(by: .value("Works Count", "Works Count"))
-                    
-                }
+                    BarMark(
+                        x: .value("Industry", industry.name),
+                        y: .value("Industry Count", works.filter { $0.project.industry == industry }.unique().count)
+                    ).foregroundStyle(by: .value("Works Count", "Works Count"))
+                }.frame(height: 200)
                 
                 Chart(projectIndstr) { industry in
                     let filterWorks = works.filter { $0.project.industry == industry }
@@ -150,7 +148,7 @@ private extension WarehouseChartsView {
                         x: .value("Industry", industry.name),
                         y: .value("failedWorksCount", filterWorks.map { $0.failedWorksCount }.reduce(0, +))
                     ).foregroundStyle(by: .value("Work Result", "Failed Works"))
-                }
+                }.frame(height: 200)
             }
         }
         
@@ -196,17 +194,16 @@ private extension WarehouseChartsView {
             }
         }
         
-        return ScrollView {
-            VStack(alignment: .leading) {
-                companyCharts
-                    .padding()
-                
-                industriesCharts
-                    .padding()
-                
-                employeesCharts
-                    .padding()
-            }
+        return VStack(alignment: .leading) {
+            companyCharts
+                .padding()
+            
+            industriesCharts
+                .padding()
+            
+            employeesCharts
+                .padding()
+            
         }
     }
 }
