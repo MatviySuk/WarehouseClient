@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Employee: Codable, Identifiable {
+struct Employee: Codable, Identifiable, Hashable {
     let id: Int
     let role: Role
     let fullName: String

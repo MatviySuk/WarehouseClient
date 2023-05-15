@@ -7,19 +7,13 @@
 
 import Foundation
 
-struct DimDate: Codable, Identifiable {
+struct DimDate: Codable, Identifiable, Hashable {
     let id: Int
     let year: Int
     let month: Int
     let day: Int
-//    let date: Date
     
-    init(id: Int, year: Int, month: Int, day: Int) {
-        self.id = id
-        self.year = year
-        self.month = month
-        self.day = day
-        
+    var date: Date {
         var dateComponents = DateComponents()
         dateComponents.year = year
         dateComponents.month = month
@@ -29,6 +23,45 @@ struct DimDate: Codable, Identifiable {
             fatalError("Invalid date components")
         }
         
-//        self.date = date
+        return date
+    }
+    
+    var incrementedMonthDate: DimDate {
+        var month = self.month
+        var year = self.year
+        
+        if month == 12 {
+            month = 1
+            year += 1
+        } else {
+            month += 1
+        }
+        
+        return .init(id: id, year: year, month: month, day: self.day)
+    }
+    
+    var dateTitle: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLL YYYY"
+        return dateFormatter.string(from: date)
+    }
+    
+    var text: String {
+        "\(day < 10 ? "0" : "")\(day).\(month < 10 ? "0" : "")\(month).\(year)"
+    }
+    
+    init(id: Int, year: Int, month: Int, day: Int) {
+        self.id = id
+        self.year = year
+        self.month = month
+        self.day = day
+    }
+}
+
+extension DimDate: Comparable {
+    static func < (lhs: DimDate, rhs: DimDate) -> Bool {
+        (lhs.year < rhs.year)
+        || ((lhs.year == rhs.year) && (lhs.month < rhs.month))
+        || ((lhs.year == rhs.year) && (lhs.month == rhs.month) && (lhs.day < rhs.day))
     }
 }

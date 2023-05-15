@@ -32,8 +32,8 @@ extension AppEnvironment {
     private static func configuredURLSession() -> URLSession {
         let delegate = LocalhostSessionDelegate()
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 10
-        configuration.timeoutIntervalForResource = 20
+        configuration.timeoutIntervalForRequest = 60
+        configuration.timeoutIntervalForResource = 120
         configuration.waitsForConnectivity = true
         configuration.httpMaximumConnectionsPerHost = 5
         configuration.requestCachePolicy = .returnCacheDataElseLoad

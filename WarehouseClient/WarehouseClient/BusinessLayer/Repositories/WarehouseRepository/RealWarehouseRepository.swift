@@ -27,7 +27,7 @@ struct RealWarehouseRepository: WarehouseRepository {
         call(endpoint: API.newload)
     }
     
-    func getAllWorksRecors() -> AnyPublisher<[FactWorks], Error> {
+    func getAllWorksRecords() -> AnyPublisher<[FactWorks], Error> {
         call(endpoint: API.allworks)
     }
 }

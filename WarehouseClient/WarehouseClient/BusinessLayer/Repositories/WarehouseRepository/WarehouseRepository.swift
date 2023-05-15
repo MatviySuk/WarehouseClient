@@ -12,5 +12,5 @@ protocol WarehouseRepository: WebRepository {
     func makeFullLoad() -> AnyPublisher<LoadInfo, Error>
     func makeIncrementalLoad() -> AnyPublisher<LoadInfo, Error>
     
-    func getAllWorksRecors() -> AnyPublisher<[FactWorks], Error>
+    func getAllWorksRecords() -> AnyPublisher<[FactWorks], Error>
 }

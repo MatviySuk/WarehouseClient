@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FactWorks: Codable, Identifiable {
+struct FactWorks: Codable, Identifiable, Hashable {
     let id: Int
     let project: Project
     let startDate: DimDate
@@ -25,5 +25,11 @@ struct FactWorks: Codable, Identifiable {
 extension FactWorks: Equatable {
     static func == (lhs: FactWorks, rhs: FactWorks) -> Bool {
         lhs.id == rhs.id
+    }
+}
+
+extension FactWorks: Comparable {
+    static func < (lhs: FactWorks, rhs: FactWorks) -> Bool {
+        lhs.id < rhs.id
     }
 }

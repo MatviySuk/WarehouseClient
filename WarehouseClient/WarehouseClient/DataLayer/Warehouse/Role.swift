@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Role: Codable, Identifiable {
+struct Role: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
 }

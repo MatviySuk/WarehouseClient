@@ -55,7 +55,7 @@ struct RealWarehouseService: WarehouseService {
         appState[\.userData.works].setIsLoading(cancelBag: cancelBag)
         
         webRepository
-            .getAllWorksRecors()
+            .getAllWorksRecords()
             .sinkToLoadable { works in
                 appState[\.userData.works] = works
             }
