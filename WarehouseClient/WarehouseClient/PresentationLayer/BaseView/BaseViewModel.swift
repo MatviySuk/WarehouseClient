@@ -19,4 +19,8 @@ final class BaseViewModel: ViewModel {
                 .weakAssign(to: \.isAuth, on: self)
         }
     }
+    
+    func reloadWorks() {
+        container.services.warehouseService.getAllWorksRecords()
+    }
 }

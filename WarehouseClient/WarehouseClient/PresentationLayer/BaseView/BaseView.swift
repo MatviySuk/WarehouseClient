@@ -9,14 +9,31 @@ import SwiftUI
 
 struct BaseView: View {
     @ObservedObject private(set) var viewModel: BaseViewModel
+    @State private var selectedTab: String = "Tables"
     
     var body: some View {
-        NavigationStack {
-            if viewModel.isAuth {
-                WarehouseView(viewModel: .init(container: viewModel.container))
-            } else {
-                AuthView(viewModel: .init(container: viewModel.container))
-            }
+        if viewModel.isAuth {
+            tabViews
+        } else {
+            AuthView(viewModel: .init(container: viewModel.container))
+        }
+    }
+    
+    private var tabViews: some View {
+        TabView(selection: $selectedTab) {
+            WarehouseView(viewModel: .init(container: viewModel.container))
+                .tabItem {
+                    Label("Tables", systemImage: "tablecells.fill")
+                }
+                .tag("Tables")
+            WarehouseChartsView(viewModel: .init(container: viewModel.container))
+                .tabItem {
+                    Label("Charts", systemImage: "chart.pie.fill")
+                }
+                .tag("Charts")
+        }
+        .onAppear {
+            viewModel.reloadWorks()
         }
     }
 }

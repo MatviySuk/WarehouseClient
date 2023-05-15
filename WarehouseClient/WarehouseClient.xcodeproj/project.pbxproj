@@ -11,6 +11,8 @@
 		540BFC3B2A10E85C0085D1E0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC3A2A10E85C0085D1E0 /* ErrorView.swift */; };
 		540BFC3D2A10EEF80085D1E0 /* LocalhostSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC3C2A10EEF80085D1E0 /* LocalhostSessionDelegate.swift */; };
 		540BFC3F2A125B570085D1E0 /* Array + Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC3E2A125B570085D1E0 /* Array + Unique.swift */; };
+		540BFC432A1269520085D1E0 /* WarehouseChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC422A1269520085D1E0 /* WarehouseChartsViewModel.swift */; };
+		540BFC452A12696D0085D1E0 /* WarehouseChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */; };
 		54AB330E2A0FB46200C7619E /* WarehouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB330D2A0FB46200C7619E /* WarehouseService.swift */; };
 		54AB33112A0FB4CA00C7619E /* DimDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB33102A0FB4CA00C7619E /* DimDate.swift */; };
 		54AB33132A0FB6C800C7619E /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB33122A0FB6C800C7619E /* Role.swift */; };
@@ -58,6 +60,8 @@
 		540BFC3A2A10E85C0085D1E0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		540BFC3C2A10EEF80085D1E0 /* LocalhostSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalhostSessionDelegate.swift; sourceTree = "<group>"; };
 		540BFC3E2A125B570085D1E0 /* Array + Unique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Unique.swift"; sourceTree = "<group>"; };
+		540BFC422A1269520085D1E0 /* WarehouseChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseChartsViewModel.swift; sourceTree = "<group>"; };
+		540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseChartsView.swift; sourceTree = "<group>"; };
 		54AB330D2A0FB46200C7619E /* WarehouseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseService.swift; sourceTree = "<group>"; };
 		54AB33102A0FB4CA00C7619E /* DimDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimDate.swift; sourceTree = "<group>"; };
 		54AB33122A0FB6C800C7619E /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -123,6 +127,24 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		540BFC402A12692C0085D1E0 /* WarehouseTables */ = {
+			isa = PBXGroup;
+			children = (
+				54AB332D2A0FD7DE00C7619E /* WarehouseViewModel.swift */,
+				54AB332F2A0FD85A00C7619E /* WarehouseView.swift */,
+			);
+			path = WarehouseTables;
+			sourceTree = "<group>";
+		};
+		540BFC412A12693C0085D1E0 /* WarehouseCharts */ = {
+			isa = PBXGroup;
+			children = (
+				540BFC422A1269520085D1E0 /* WarehouseChartsViewModel.swift */,
+				540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */,
+			);
+			path = WarehouseCharts;
+			sourceTree = "<group>";
+		};
 		54AB330F2A0FB4A300C7619E /* Warehouse */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,8 +162,8 @@
 		54AB332A2A0FD7C600C7619E /* WarehouseView */ = {
 			isa = PBXGroup;
 			children = (
-				54AB332D2A0FD7DE00C7619E /* WarehouseViewModel.swift */,
-				54AB332F2A0FD85A00C7619E /* WarehouseView.swift */,
+				540BFC412A12693C0085D1E0 /* WarehouseCharts */,
+				540BFC402A12692C0085D1E0 /* WarehouseTables */,
 			);
 			path = WarehouseView;
 			sourceTree = "<group>";
@@ -440,6 +462,7 @@
 				54AB332E2A0FD7DE00C7619E /* WarehouseViewModel.swift in Sources */,
 				54C286662A091ABE004F4C9F /* CancelBag.swift in Sources */,
 				54C286802A091B2F004F4C9F /* AuthService.swift in Sources */,
+				540BFC452A12696D0085D1E0 /* WarehouseChartsView.swift in Sources */,
 				54C286812A091B2F004F4C9F /* LocalAuthService.swift in Sources */,
 				54AB33302A0FD85A00C7619E /* WarehouseView.swift in Sources */,
 				54AB330E2A0FB46200C7619E /* WarehouseService.swift in Sources */,
@@ -470,6 +493,7 @@
 				540BFC3D2A10EEF80085D1E0 /* LocalhostSessionDelegate.swift in Sources */,
 				54C286682A091ABE004F4C9F /* ViewModel.swift in Sources */,
 				54C2866A2A091ABE004F4C9F /* Publisher + WeakAssign.swift in Sources */,
+				540BFC432A1269520085D1E0 /* WarehouseChartsViewModel.swift in Sources */,
 				54C2868E2A0926B7004F4C9F /* WarehouseRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

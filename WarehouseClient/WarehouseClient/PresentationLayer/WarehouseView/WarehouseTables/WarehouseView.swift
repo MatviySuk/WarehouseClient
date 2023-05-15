@@ -10,13 +10,17 @@ import SwiftUI
 struct WarehouseView: View {    
     @ObservedObject private(set) var viewModel: WarehouseViewModel
     @State private var reversedSort = false
+    @State private var columnsVisibility: NavigationSplitViewVisibility = .detailOnly
         
     let inspection = Inspection<Self>()
     
     var body: some View {
         GeometryReader { geometry in
-            NavigationStack {
+            NavigationSplitView(columnVisibility: $columnsVisibility, sidebar: {
+                sidebarView
+            })  {
                 self.worksContent
+                    .navigationTitle("Tables")
                     .animation(.easeInOut(duration: 0.2), value: viewModel.works)
                     .toolbar {
                         ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -39,8 +43,7 @@ struct WarehouseView: View {
                         }
                     }
             }
-        }
-        .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
+        }.onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 
     
@@ -51,9 +54,15 @@ struct WarehouseView: View {
         case let .isLoading(last, _):
             worksLoadingView(last)
         case let .loaded(works):
-            worksLoadedView(works, showSearch: true, showLoading: false)
+            worksLoadedView(works)
         case let .failed(error):
             worksFailedView(error)
+        }
+    }
+    
+    private var sidebarView: some View {
+        VStack {
+            Text("Sidebar")
         }
     }
 }
@@ -67,7 +76,7 @@ private extension WarehouseView {
     
     func worksLoadingView(_ previouslyLoaded: [FactWorks]?) -> some View {
         if let works = previouslyLoaded {
-            return AnyView(worksLoadedView(works, showSearch: true, showLoading: true))
+            return AnyView(worksLoadedView(works))
         } else {
             return AnyView(ActivityIndicatorView().padding())
         }
@@ -84,7 +93,7 @@ private extension WarehouseView {
 // MARK: - Displaying Content
 
 private extension WarehouseView {
-    func worksLoadedView(_ works: [FactWorks], showSearch: Bool, showLoading: Bool) -> some View {
+    func worksLoadedView(_ works: [FactWorks]) -> some View {
         var factTable: some View {
             VStack(alignment: .leading) {
                 Text("Works")
@@ -201,7 +210,7 @@ private extension WarehouseView {
             ScrollView {
                 VStack(spacing: 100) {
                     factTable
-                        .frame(height: geo.size.height * 0.8)
+                        .frame(height: geo.size.height * 0.9)
                     dimProjects
                         .frame(height: geo.size.height * 0.4)
                     dimEmployees
