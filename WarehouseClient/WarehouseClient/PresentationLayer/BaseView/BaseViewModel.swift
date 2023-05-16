@@ -21,6 +21,6 @@ final class BaseViewModel: ViewModel {
     }
     
     func reloadWorks() {
-        container.services.warehouseService.getAllWorksRecords()
+        container.services.warehouseService.getAllWorksRecords(cancelBag: cancelBag)
     }
 }

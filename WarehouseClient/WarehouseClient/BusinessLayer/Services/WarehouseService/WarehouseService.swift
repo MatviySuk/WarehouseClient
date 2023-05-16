@@ -9,16 +9,19 @@ import Foundation
 import Combine
 
 protocol WarehouseService {
-    func makeFullLoad()
-    func makeIncrementalLoad()
+    func makeFullLoad(cancelBag: CancelBag)
+    func makeIncrementalLoad(cancelBag: CancelBag)
+    func makeCleanUp(cancelBag: CancelBag)
     
-    func getAllWorksRecords()
+    func getAllWorksRecords(cancelBag: CancelBag)
 }
 
 struct MockWarehouseService: WarehouseService {
-    func makeFullLoad() { }
+    func makeFullLoad(cancelBag: CancelBag) { }
     
-    func makeIncrementalLoad() { }
+    func makeIncrementalLoad(cancelBag: CancelBag) { }
     
-    func getAllWorksRecords() { }
+    func makeCleanUp(cancelBag: CancelBag) { }
+    
+    func getAllWorksRecords(cancelBag: CancelBag) { }
 }

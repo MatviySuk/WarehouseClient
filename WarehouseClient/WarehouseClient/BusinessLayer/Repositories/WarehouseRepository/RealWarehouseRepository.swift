@@ -30,6 +30,10 @@ struct RealWarehouseRepository: WarehouseRepository {
     func getAllWorksRecords() -> AnyPublisher<[FactWorks], Error> {
         call(endpoint: API.allworks)
     }
+    
+    func makeCleanUp() -> AnyPublisher<Execution, Error> {
+        call(endpoint: API.cleanup)
+    }
 }
 
 // MARK: - Endpoints
@@ -39,6 +43,7 @@ extension RealWarehouseRepository {
         case allworks
         case fullload
         case newload
+        case cleanup
     }
 }
 
@@ -51,16 +56,21 @@ extension RealWarehouseRepository.API: APICall {
         switch self {
         case .allworks:
             return "GET"
-        case .fullload, .newload:
+        case .newload, .cleanup, .fullload:
             return "POST"
         }
     }
     
     var headers: [String: String]? {
-        return ["Accept": "application/json"]
+        return ["Accept": "*/*", "Content-Type" : "application/json"]
     }
     
     func body() throws -> Data? {
-        return nil
+        switch self {
+        case .allworks:
+            return nil
+        case .fullload, .newload, .cleanup:
+            return Data()
+        }
     }
 }

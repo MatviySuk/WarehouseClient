@@ -62,10 +62,43 @@ struct WarehouseView: View {
     }
     
     private var sidebarView: some View {
-        VStack {
-            if let _ = viewModel.works.value {
-                ShareLink("Export PDF", item: render())
+        VStack(spacing: 30) {
+            if let info = viewModel.loadInfo {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Last Load: \(info.loadTime)")
+                        Text("Rows Affected: \(info.rowsAffected)")
+                    }
+                    .bold()
+                    .padding()
+                    
+                    Spacer()
+                }
             }
+            
+            Button("Full Load") {
+                viewModel.container.services.warehouseService.makeFullLoad(cancelBag: viewModel.cancelBag)
+            }.buttonStyle(.borderedProminent)
+            
+            Button("Incremental Load") {
+                viewModel.container.services.warehouseService.makeIncrementalLoad(cancelBag: viewModel.cancelBag)
+            }.buttonStyle(.borderedProminent)
+            
+            Button("Warehouse Clean Up") {
+                viewModel.container.services.warehouseService.makeCleanUp(cancelBag: viewModel.cancelBag)
+            }.buttonStyle(.borderedProminent)
+            
+            ShareLink("Export PDF", item: render())
+                .buttonStyle(.bordered)
+            
+            Spacer()
+        }.padding(.vertical)
+        .navigationTitle("ITCompanyWHS")
+    }
+    
+    private var loadInfo: some View {
+        VStack {
+            
         }
     }
         

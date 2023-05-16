@@ -26,6 +26,7 @@ final class WarehouseViewModel: ViewModel {
     }
     
     @Published var works: Loadable<[FactWorks]> = .notRequested
+    @Published var loadInfo: LoadInfo? = nil
     @Published var selectedDate: DimDate = DimDate(id: 0, year: 2023, month: 1, day: 1)
     @Published var dates: [DimDate] = []
     @Published var selectedSortOrder: KeyPathComparator<FactWorks> = KeyPathComparator(\FactWorks.project.name)
@@ -62,10 +63,15 @@ final class WarehouseViewModel: ViewModel {
                         self.works = value
                     }
                 }
+            
+            container.appState.updates(for: \.userData.loadInfo)
+                .sink { [weak self] value in
+                    self?.loadInfo = value
+                }
         }
     }
     
     func reloadWorks() {
-        container.services.warehouseService.getAllWorksRecords()
+        container.services.warehouseService.getAllWorksRecords(cancelBag: cancelBag)
     }
 }

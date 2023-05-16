@@ -9,5 +9,6 @@ import Foundation
 
 struct LoadInfo: Codable, Identifiable, Equatable {
     let id = UUID()
-    let affectedRows: Int
+    let rowsAffected: Int
+    let loadTime: String
 }

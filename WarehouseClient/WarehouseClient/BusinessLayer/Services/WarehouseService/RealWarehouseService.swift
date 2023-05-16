@@ -17,9 +17,7 @@ struct RealWarehouseService: WarehouseService {
         self.appState = appState
     }
     
-    func makeFullLoad() {
-        let cancelBag = CancelBag()
-
+    func makeFullLoad(cancelBag: CancelBag) {
         webRepository.makeFullLoad()
             .sink(receiveCompletion: { comp in
                 switch comp {
@@ -29,13 +27,12 @@ struct RealWarehouseService: WarehouseService {
                 }
             }, receiveValue: { value in
                 appState[\.userData.loadInfo] = value
+                getAllWorksRecords(cancelBag: cancelBag)
             })
             .store(in: cancelBag)
     }
     
-    func makeIncrementalLoad() {
-        let cancelBag = CancelBag()
-
+    func makeIncrementalLoad(cancelBag: CancelBag) {
         webRepository.makeIncrementalLoad()
             .sink(receiveCompletion: { comp in
                 switch comp {
@@ -45,19 +42,26 @@ struct RealWarehouseService: WarehouseService {
                 }
             }, receiveValue: { value in
                 appState[\.userData.loadInfo] = value
+                getAllWorksRecords(cancelBag: cancelBag)
             })
             .store(in: cancelBag)
     }
     
-    func getAllWorksRecords() {
-        let cancelBag = CancelBag()
-        
+    func getAllWorksRecords(cancelBag: CancelBag) {
         appState[\.userData.works].setIsLoading(cancelBag: cancelBag)
         
         webRepository
             .getAllWorksRecords()
             .sinkToLoadable { works in
                 appState[\.userData.works] = works
+            }
+            .store(in: cancelBag)
+    }
+    
+    func makeCleanUp(cancelBag: CancelBag) {
+        webRepository.makeCleanUp()
+            .sinkToLoadable { _ in
+                getAllWorksRecords(cancelBag: cancelBag)
             }
             .store(in: cancelBag)
     }

@@ -11,6 +11,7 @@ import Combine
 protocol WarehouseRepository: WebRepository {
     func makeFullLoad() -> AnyPublisher<LoadInfo, Error>
     func makeIncrementalLoad() -> AnyPublisher<LoadInfo, Error>
+    func makeCleanUp() -> AnyPublisher<Execution, Error>
     
     func getAllWorksRecords() -> AnyPublisher<[FactWorks], Error>
 }

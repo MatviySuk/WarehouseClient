@@ -14,7 +14,7 @@ struct AppState: Equatable {
 extension AppState {
     struct UserData: Equatable {
         var works: Loadable<[FactWorks]> = .notRequested
-        var loadInfo: LoadInfo = .init(affectedRows: .zero)
+        var loadInfo: LoadInfo? = nil
     }
 }
 

@@ -13,6 +13,7 @@
 		540BFC3F2A125B570085D1E0 /* Array + Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC3E2A125B570085D1E0 /* Array + Unique.swift */; };
 		540BFC432A1269520085D1E0 /* WarehouseChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC422A1269520085D1E0 /* WarehouseChartsViewModel.swift */; };
 		540BFC452A12696D0085D1E0 /* WarehouseChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */; };
+		540BFC472A1393390085D1E0 /* Execution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC462A1393390085D1E0 /* Execution.swift */; };
 		54AB330E2A0FB46200C7619E /* WarehouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB330D2A0FB46200C7619E /* WarehouseService.swift */; };
 		54AB33112A0FB4CA00C7619E /* DimDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB33102A0FB4CA00C7619E /* DimDate.swift */; };
 		54AB33132A0FB6C800C7619E /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB33122A0FB6C800C7619E /* Role.swift */; };
@@ -62,6 +63,7 @@
 		540BFC3E2A125B570085D1E0 /* Array + Unique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Unique.swift"; sourceTree = "<group>"; };
 		540BFC422A1269520085D1E0 /* WarehouseChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseChartsViewModel.swift; sourceTree = "<group>"; };
 		540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseChartsView.swift; sourceTree = "<group>"; };
+		540BFC462A1393390085D1E0 /* Execution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Execution.swift; sourceTree = "<group>"; };
 		54AB330D2A0FB46200C7619E /* WarehouseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseService.swift; sourceTree = "<group>"; };
 		54AB33102A0FB4CA00C7619E /* DimDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimDate.swift; sourceTree = "<group>"; };
 		54AB33122A0FB6C800C7619E /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				54AB330F2A0FB4A300C7619E /* Warehouse */,
 				54C286872A091B49004F4C9F /* Auth */,
 				54C286822A091B3F004F4C9F /* Errors */,
+				540BFC462A1393390085D1E0 /* Execution.swift */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				54C286672A091ABE004F4C9F /* Helpers.swift in Sources */,
 				54C286892A091B54004F4C9F /* AppEnvironment.swift in Sources */,
 				54AB33252A0FBC6300C7619E /* NetworkingHelpers.swift in Sources */,
+				540BFC472A1393390085D1E0 /* Execution.swift in Sources */,
 				54C2867B2A091B27004F4C9F /* ServicesContainer.swift in Sources */,
 				54C2866B2A091ABE004F4C9F /* UserDefault.swift in Sources */,
 				54AB332E2A0FD7DE00C7619E /* WarehouseViewModel.swift in Sources */,
