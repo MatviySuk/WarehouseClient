@@ -11,12 +11,14 @@ import PDFKit
 struct WarehouseView: View {    
     @ObservedObject private(set) var viewModel: WarehouseViewModel
     @State private var reversedSort = false
+    @State private var showFilters = false
     @State private var columnsVisibility: NavigationSplitViewVisibility = .detailOnly
+    @State private var selectedWork: FactWorks? = nil
         
     let inspection = Inspection<Self>()
     
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { geo in
             NavigationSplitView(columnVisibility: $columnsVisibility, sidebar: {
                 sidebarView
             })  {
@@ -25,6 +27,13 @@ struct WarehouseView: View {
                     .animation(.easeInOut(duration: 0.2), value: viewModel.works)
                     .toolbar {
                         ToolbarItemGroup(placement: .navigationBarTrailing) {
+                            Button("Filters") {
+                                showFilters.toggle()
+                            }.popover(isPresented: $showFilters, content: {
+                                factFiltersView
+                                    .frame(maxWidth: geo.size.width * 0.4, maxHeight: geo.size.height * 0.4)
+                            })
+                            
                             Picker("Sort Records", selection: $viewModel.selectedSortOrder, content: {
                                 ForEach(viewModel.sortOrder, id: \.self) { value in
                                     Text(value.name)
@@ -33,16 +42,9 @@ struct WarehouseView: View {
                             }).pickerStyle(.menu)
                             
                             Toggle("Reversed Sort", isOn: $reversedSort)
-                            
-                            Picker("Dates", selection: $viewModel.selectedDate, content: {
-                                ForEach(viewModel.dates) { date in
-                                    Text("\(date.dateTitle)")
-                                        .tag(date)
-                                }
-                            })
-                            .pickerStyle(.menu)
                         }
                     }
+                    .sheet(item: $selectedWork) { work in WorkDetailedView(work: work) }
             }
         }.onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
@@ -61,6 +63,38 @@ struct WarehouseView: View {
         }
     }
     
+    private var factFiltersView: some View {
+        ScrollView {
+            VStack(spacing: .zero) {
+                VStack {
+                    Button("Reset All") {
+                        viewModel.setUpRanges()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding(.vertical, 20)
+                    
+                    Divider()
+                }.padding(.horizontal)
+                
+                DimDateRangePicker(title: "Dates Range", limit: viewModel.datesLimit(), dates: $viewModel.dates, range: $viewModel.datesIndicesRange)
+                
+                RangePickerView(title: "Total Minutes", limit: viewModel.limit(keyPath: \.workedTimeMinutes), range: $viewModel.totalMinsRange)
+                
+                RangePickerView(title: "Estimated Minutes", limit: viewModel.limit(keyPath: \.estimatedTimeMinutes), range: $viewModel.estMinsRange)
+                
+                RangePickerView(title: "Delayed Minutes", limit: viewModel.limit(keyPath: \.delayedTimeMinutes), range: $viewModel.delayMinsRange)
+
+                RangePickerView(title: "Total Works", limit: viewModel.limit(keyPath: \.totalWorksCount), range: $viewModel.totalWorksRange)
+
+                RangePickerView(title: "Successful Works", limit: viewModel.limit(keyPath: \.successfulWorksCount), range: $viewModel.successWorksRange)
+
+                RangePickerView(title: "Delayed Works", limit: viewModel.limit(keyPath: \.delayedWorksCount), range: $viewModel.delayWorksRange)
+
+                RangePickerView(title: "Failed Works", limit: viewModel.limit(keyPath: \.failedWorksCount), range: $viewModel.failedWorksRange)
+            }
+        }
+    }
+
     private var sidebarView: some View {
         VStack(spacing: 30) {
             if let info = viewModel.loadInfo {
@@ -94,12 +128,6 @@ struct WarehouseView: View {
             Spacer()
         }.padding(.vertical)
         .navigationTitle("ITCompanyWHS")
-    }
-    
-    private var loadInfo: some View {
-        VStack {
-            
-        }
     }
         
     private func render() -> URL {
@@ -159,24 +187,24 @@ private extension WarehouseView {
             VStack(alignment: .leading) {
                 Text("Works")
                     .font(.largeTitle)
-                
-                Table(works.filter {
-                    ($0.startDate >= viewModel.selectedDate) &&
-                    ($0.endDate <= viewModel.selectedDate.incrementedMonthDate)
-                }) {
-                    Group {
-                        TableColumn("Project Name", value: \FactWorks.project.name)
-                        TableColumn("Employee", value: \FactWorks.employee.fullName)
-                    }
+
+                VStack {
+                    WorkHeaderView()
+                        .frame(height: 70)
                     
-                    Group {
-                        TableColumn("Total mins") { (work: FactWorks) in Text("\(work.workedTimeMinutes)") }
-                        TableColumn("Est. mins") { work in Text("\(work.estimatedTimeMinutes)") }
-                        TableColumn("Delayed mins") { work in Text("\(work.delayedTimeMinutes)") }
-                        TableColumn("Total works") { work in Text("\(work.totalWorksCount)") }
-                        TableColumn("Successful works") { work in Text("\(work.successfulWorksCount)") }
-                        TableColumn("Failed works") { work in Text("\(work.failedWorksCount)") }
-                        TableColumn("Delayed works") { work in Text("\(work.delayedWorksCount)") }
+                    Divider()
+                    
+                    ScrollView {
+                        ForEach(viewModel.filteredWorks(works)) { work in
+                            Button(action: {
+                                selectedWork = work
+                            }) {
+                                WorkItemView(work: work)
+                                    .frame(minHeight: 50, maxHeight: 100, alignment: .center)
+                            }.tint(.black)
+                            
+                            Divider()
+                        }
                     }
                 }
                 .onChange(of: viewModel.selectedSortOrder) { order in

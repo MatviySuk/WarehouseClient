@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		540976022A14EFEB003F55C7 /* RangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540976012A14EFEB003F55C7 /* RangePickerView.swift */; };
+		540976042A150E5C003F55C7 /* DimDateRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540976032A150E5C003F55C7 /* DimDateRangePicker.swift */; };
+		540976062A1524E9003F55C7 /* WorkItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540976052A1524E9003F55C7 /* WorkItemView.swift */; };
+		540976082A152A4C003F55C7 /* WorkHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540976072A152A4C003F55C7 /* WorkHeaderView.swift */; };
 		540BFC392A10E57D0085D1E0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC382A10E57D0085D1E0 /* ActivityIndicatorView.swift */; };
 		540BFC3B2A10E85C0085D1E0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC3A2A10E85C0085D1E0 /* ErrorView.swift */; };
 		540BFC3D2A10EEF80085D1E0 /* LocalhostSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC3C2A10EEF80085D1E0 /* LocalhostSessionDelegate.swift */; };
@@ -14,6 +18,7 @@
 		540BFC432A1269520085D1E0 /* WarehouseChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC422A1269520085D1E0 /* WarehouseChartsViewModel.swift */; };
 		540BFC452A12696D0085D1E0 /* WarehouseChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */; };
 		540BFC472A1393390085D1E0 /* Execution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC462A1393390085D1E0 /* Execution.swift */; };
+		542EEF2D2A1533390098E08D /* WorkDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542EEF2C2A1533390098E08D /* WorkDetailedView.swift */; };
 		54AB330E2A0FB46200C7619E /* WarehouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB330D2A0FB46200C7619E /* WarehouseService.swift */; };
 		54AB33112A0FB4CA00C7619E /* DimDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB33102A0FB4CA00C7619E /* DimDate.swift */; };
 		54AB33132A0FB6C800C7619E /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB33122A0FB6C800C7619E /* Role.swift */; };
@@ -57,6 +62,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		540976012A14EFEB003F55C7 /* RangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangePickerView.swift; sourceTree = "<group>"; };
+		540976032A150E5C003F55C7 /* DimDateRangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimDateRangePicker.swift; sourceTree = "<group>"; };
+		540976052A1524E9003F55C7 /* WorkItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkItemView.swift; sourceTree = "<group>"; };
+		540976072A152A4C003F55C7 /* WorkHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkHeaderView.swift; sourceTree = "<group>"; };
 		540BFC382A10E57D0085D1E0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		540BFC3A2A10E85C0085D1E0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		540BFC3C2A10EEF80085D1E0 /* LocalhostSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalhostSessionDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +73,7 @@
 		540BFC422A1269520085D1E0 /* WarehouseChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseChartsViewModel.swift; sourceTree = "<group>"; };
 		540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseChartsView.swift; sourceTree = "<group>"; };
 		540BFC462A1393390085D1E0 /* Execution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Execution.swift; sourceTree = "<group>"; };
+		542EEF2C2A1533390098E08D /* WorkDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetailedView.swift; sourceTree = "<group>"; };
 		54AB330D2A0FB46200C7619E /* WarehouseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseService.swift; sourceTree = "<group>"; };
 		54AB33102A0FB4CA00C7619E /* DimDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimDate.swift; sourceTree = "<group>"; };
 		54AB33122A0FB6C800C7619E /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -125,6 +135,8 @@
 			children = (
 				540BFC3A2A10E85C0085D1E0 /* ErrorView.swift */,
 				540BFC382A10E57D0085D1E0 /* ActivityIndicatorView.swift */,
+				540976012A14EFEB003F55C7 /* RangePickerView.swift */,
+				540976032A150E5C003F55C7 /* DimDateRangePicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -134,6 +146,9 @@
 			children = (
 				54AB332D2A0FD7DE00C7619E /* WarehouseViewModel.swift */,
 				54AB332F2A0FD85A00C7619E /* WarehouseView.swift */,
+				540976052A1524E9003F55C7 /* WorkItemView.swift */,
+				540976072A152A4C003F55C7 /* WorkHeaderView.swift */,
+				542EEF2C2A1533390098E08D /* WorkDetailedView.swift */,
 			);
 			path = WarehouseTables;
 			sourceTree = "<group>";
@@ -472,13 +487,16 @@
 				54AB330E2A0FB46200C7619E /* WarehouseService.swift in Sources */,
 				54AB33172A0FB7B200C7619E /* Industry.swift in Sources */,
 				540BFC3B2A10E85C0085D1E0 /* ErrorView.swift in Sources */,
+				540976042A150E5C003F55C7 /* DimDateRangePicker.swift in Sources */,
 				54AB33232A0FBC3600C7619E /* APICall.swift in Sources */,
 				54C286422A091609004F4C9F /* WarehouseClientApp.swift in Sources */,
+				542EEF2D2A1533390098E08D /* WorkDetailedView.swift in Sources */,
 				54AB33112A0FB4CA00C7619E /* DimDate.swift in Sources */,
 				54C286842A091B3F004F4C9F /* StringError.swift in Sources */,
 				540BFC3F2A125B570085D1E0 /* Array + Unique.swift in Sources */,
 				54C286862A091B46004F4C9F /* User.swift in Sources */,
 				54C2865A2A0919C5004F4C9F /* AuthView.swift in Sources */,
+				540976062A1524E9003F55C7 /* WorkItemView.swift in Sources */,
 				54C286782A091B27004F4C9F /* AppState.swift in Sources */,
 				54C286592A0919C5004F4C9F /* AuthViewModel.swift in Sources */,
 				54AB33152A0FB74700C7619E /* Employee.swift in Sources */,
@@ -490,12 +508,14 @@
 				54AB33212A0FBC2300C7619E /* WebRepository.swift in Sources */,
 				54C286692A091ABE004F4C9F /* Binding + Equatable.swift in Sources */,
 				54C2866C2A091ABE004F4C9F /* Loadable.swift in Sources */,
+				540976022A14EFEB003F55C7 /* RangePickerView.swift in Sources */,
 				54AB33192A0FB7E600C7619E /* Project.swift in Sources */,
 				54C2866D2A091ABE004F4C9F /* LazyList.swift in Sources */,
 				54C286722A091B0E004F4C9F /* BaseView.swift in Sources */,
 				54AB33132A0FB6C800C7619E /* Role.swift in Sources */,
 				540BFC3D2A10EEF80085D1E0 /* LocalhostSessionDelegate.swift in Sources */,
 				54C286682A091ABE004F4C9F /* ViewModel.swift in Sources */,
+				540976082A152A4C003F55C7 /* WorkHeaderView.swift in Sources */,
 				54C2866A2A091ABE004F4C9F /* Publisher + WeakAssign.swift in Sources */,
 				540BFC432A1269520085D1E0 /* WarehouseChartsViewModel.swift in Sources */,
 				54C2868E2A0926B7004F4C9F /* WarehouseRepository.swift in Sources */,

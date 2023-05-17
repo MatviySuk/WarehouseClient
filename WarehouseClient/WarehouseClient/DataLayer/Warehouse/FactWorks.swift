@@ -20,6 +20,10 @@ struct FactWorks: Codable, Identifiable, Hashable {
     let successfulWorksCount: Int
     let delayedWorksCount: Int
     let failedWorksCount: Int
+    
+    subscript<T>(keyPath: KeyPath<Self, T>) -> T where T: Equatable {
+        get { self[keyPath: keyPath] }
+    }
 }
 
 extension FactWorks: Equatable {

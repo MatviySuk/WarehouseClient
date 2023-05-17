@@ -43,7 +43,7 @@ struct DimDate: Codable, Identifiable, Hashable {
     var dateTitle: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLL YYYY"
-        return dateFormatter.string(from: date)
+        return dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: 1, to: date) ?? date)
     }
     
     var text: String {
