@@ -159,6 +159,54 @@ private extension WarehouseChartsView {
                     .bold()
                 
                 Chart {
+                    ForEach(works.map { $0.startDate }.unique().sorted()) { date in
+                        let dateWorks = works.filter { $0.startDate == date }
+                        
+                        LineMark(
+                            x: .value("Date", date.dateTitle),
+                            y: .value("successfulWorksCount", dateWorks.map { $0.successfulWorksCount }.reduce(0, +))
+                        ).symbol(by: .value("Successful Works", "Successful Works Count"))
+                        .foregroundStyle(by: .value("Successful Works", "Successful Works Count"))
+                        
+                        LineMark(
+                            x: .value("Date", date.dateTitle),
+                            y: .value("failedWorksCount", dateWorks.map { $0.failedWorksCount }.reduce(0, +))
+                        ).symbol(by: .value("Failed Works Count", "Failed Works Count"))
+                        .foregroundStyle(by: .value("Failed Works Count", "Failed Works Count"))
+                        
+                        LineMark(
+                            x: .value("Date", date.dateTitle),
+                            y: .value("delayedWorksCount", dateWorks.map { $0.delayedWorksCount }.reduce(0, +))
+                        ).symbol(by: .value("Delayed Works Count", "Delayed Works Count"))
+                        .foregroundStyle(by: .value("Delayed Works Count", "Delayed Works Count"))
+                    }
+                }.frame(height: 200)
+                
+                Chart {
+                    ForEach(works.map { $0.startDate }.unique().sorted()) { date in
+                        let dateWorks = works.filter { $0.startDate == date }
+                        
+                        LineMark(
+                            x: .value("Date", date.dateTitle),
+                            y: .value("worked", dateWorks.map { $0.workedTimeMinutes }.reduce(0, +))
+                        ).symbol(by: .value("Worked Time", "Worked Time"))
+                            .foregroundStyle(by: .value("Worked Time", "Worked Time"))
+                        
+                        LineMark(
+                            x: .value("Date", date.dateTitle),
+                            y: .value("estimated", dateWorks.map { $0.estimatedTimeMinutes }.reduce(0, +))
+                        ).symbol(by: .value("Estimated Time", "Estimated Time"))
+                            .foregroundStyle(by: .value("Estimated Time", "Estimated Time"))
+                        
+                        LineMark(
+                            x: .value("Date", date.dateTitle),
+                            y: .value("delayed", dateWorks.map { $0.delayedTimeMinutes }.reduce(0, +))
+                        ).symbol(by: .value("Delayed Time", "Delayed Time"))
+                            .foregroundStyle(by: .value("Delayed Time", "Delayed Time"))
+                    }
+                }.frame(height: 200)
+                
+                Chart {
                     BarMark(
                         x: .value("successfulWorksCount", works.map { $0.successfulWorksCount }.reduce(0, +)),
                         y: .value("Successful Works", "Successful Works Count")
@@ -194,6 +242,71 @@ private extension WarehouseChartsView {
             }
         }
         
+        var allEmployeesCharts: some View {
+            VStack(spacing: 50) {
+                Text("All Employees Charts")
+                    .font(.largeTitle)
+                    .bold()
+                
+                ForEach(works.map { $0.employee }.unique()) { emp in
+                    VStack {
+                        Text(emp.fullName)
+                            .font(.largeTitle)
+                        
+                        Chart {
+                            let empWorks = works.filter { $0.employee == emp }
+                            ForEach(empWorks.map { $0.project }.unique()) { proj in
+                                let projWorks = empWorks.filter { $0.project == proj }.unique()
+                                
+                                LineMark(
+                                    x: .value("project", proj.name),
+                                    y: .value("successfulWorksCount", projWorks.map { $0.successfulWorksCount }.reduce(0, +))
+                                ).symbol(by: .value("Successful Works", "Successful Works Count"))
+                                    .foregroundStyle(by: .value("Successful Works", "Successful Works Count"))
+                                
+                                LineMark(
+                                    x: .value("project", proj.name),
+                                    y: .value("failedWorksCount", projWorks.map { $0.failedWorksCount }.reduce(0, +))
+                                ).symbol(by: .value("Failed Works Count", "Failed Works Count"))
+                                    .foregroundStyle(by: .value("Failed Works Count", "Failed Works Count"))
+                                
+                                LineMark(
+                                    x: .value("project", proj.name),
+                                    y: .value("delayedWorksCount", projWorks.map { $0.delayedWorksCount }.reduce(0, +))
+                                ).symbol(by: .value("Delayed Works Count", "Delayed Works Count"))
+                                    .foregroundStyle(by: .value("Delayed Works Count", "Delayed Works Count"))
+                            }
+                        }.frame(height: 200)
+                        
+                        Chart {
+                            let empWorks = works.filter { $0.employee == emp }
+                            ForEach(empWorks.map { $0.project }.unique()) { proj in
+                                let projWorks = empWorks.filter { $0.project == proj }.unique()
+                                
+                                LineMark(
+                                    x: .value("project", proj.name),
+                                    y: .value("worked", projWorks.map { $0.workedTimeMinutes }.reduce(0, +))
+                                ).symbol(by: .value("Worked Time", "Worked Time"))
+                                    .foregroundStyle(by: .value("Worked Time", "Worked Time"))
+                                
+                                LineMark(
+                                    x: .value("project", proj.name),
+                                    y: .value("estimated", projWorks.map { $0.estimatedTimeMinutes }.reduce(0, +))
+                                ).symbol(by: .value("Estimated Time", "Estimated Time"))
+                                    .foregroundStyle(by: .value("Estimated Time", "Estimated Time"))
+                                
+                                LineMark(
+                                    x: .value("project", proj.name),
+                                    y: .value("delayed", projWorks.map { $0.delayedTimeMinutes }.reduce(0, +))
+                                ).symbol(by: .value("Delayed Time", "Delayed Time"))
+                                    .foregroundStyle(by: .value("Delayed Time", "Delayed Time"))
+                            }
+                        }.frame(height: 200)
+                    }
+                }
+            }
+        }
+        
         return VStack(alignment: .leading) {
             companyCharts
                 .padding()
@@ -204,6 +317,8 @@ private extension WarehouseChartsView {
             employeesCharts
                 .padding()
             
+            allEmployeesCharts
+                .padding()
         }
     }
 }

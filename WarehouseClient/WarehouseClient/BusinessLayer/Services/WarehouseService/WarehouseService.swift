@@ -14,6 +14,7 @@ protocol WarehouseService {
     func makeCleanUp(cancelBag: CancelBag)
     
     func getAllWorksRecords(cancelBag: CancelBag)
+    func getOLTPMetadata(cancelBag: CancelBag)
 }
 
 struct MockWarehouseService: WarehouseService {
@@ -24,4 +25,6 @@ struct MockWarehouseService: WarehouseService {
     func makeCleanUp(cancelBag: CancelBag) { }
     
     func getAllWorksRecords(cancelBag: CancelBag) { }
+    
+    func getOLTPMetadata(cancelBag: CancelBag) { }
 }

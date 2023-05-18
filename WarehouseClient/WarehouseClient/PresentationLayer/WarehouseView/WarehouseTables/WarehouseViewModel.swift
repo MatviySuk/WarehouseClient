@@ -27,6 +27,7 @@ final class WarehouseViewModel: ViewModel {
     
     @Published var works: Loadable<[FactWorks]> = .notRequested
     @Published var loadInfo: LoadInfo? = nil
+    @Published var metadata: OLTPMetadata? = nil
     @Published var dates: [DimDate] = []
     @Published var selectedSortOrder: KeyPathComparator<FactWorks> = KeyPathComparator(\FactWorks.startDate)
     
@@ -77,6 +78,11 @@ final class WarehouseViewModel: ViewModel {
             container.appState.updates(for: \.userData.loadInfo)
                 .sink { [weak self] value in
                     self?.loadInfo = value
+                }
+            
+            container.appState.updates(for: \.userData.oltpMetadata)
+                .sink { [weak self] value in
+                    self?.metadata = value
                 }
         }
     }

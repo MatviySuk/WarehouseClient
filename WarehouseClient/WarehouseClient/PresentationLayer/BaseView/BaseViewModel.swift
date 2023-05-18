@@ -21,6 +21,7 @@ final class BaseViewModel: ViewModel {
     }
     
     func reloadWorks() {
+        container.services.warehouseService.getOLTPMetadata(cancelBag: cancelBag)
         container.services.warehouseService.getAllWorksRecords(cancelBag: cancelBag)
     }
 }

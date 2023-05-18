@@ -14,4 +14,5 @@ protocol WarehouseRepository: WebRepository {
     func makeCleanUp() -> AnyPublisher<Execution, Error>
     
     func getAllWorksRecords() -> AnyPublisher<[FactWorks], Error>
+    func getOLTPMetadata() -> AnyPublisher<OLTPMetadata, Error>
 }

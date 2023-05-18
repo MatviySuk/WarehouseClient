@@ -12,6 +12,7 @@ struct WarehouseView: View {
     @ObservedObject private(set) var viewModel: WarehouseViewModel
     @State private var reversedSort = false
     @State private var showFilters = false
+    @State private var showMetadata = false
     @State private var columnsVisibility: NavigationSplitViewVisibility = .detailOnly
     @State private var selectedWork: FactWorks? = nil
         
@@ -26,6 +27,14 @@ struct WarehouseView: View {
                     .navigationTitle("Tables")
                     .animation(.easeInOut(duration: 0.2), value: viewModel.works)
                     .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            if viewModel.metadata != nil {
+                                Button("OLTP DB Metadata") {
+                                    showMetadata.toggle()
+                                }
+                            }
+                        }
+                        
                         ToolbarItemGroup(placement: .navigationBarTrailing) {
                             Button("Filters") {
                                 showFilters.toggle()
@@ -45,6 +54,12 @@ struct WarehouseView: View {
                         }
                     }
                     .sheet(item: $selectedWork) { work in WorkDetailedView(work: work) }
+                    .sheet(isPresented: $showMetadata) {
+                        if let meta = viewModel.metadata {
+                            MetadataView(meta: meta)
+                        }
+                    }
+
             }
         }.onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }

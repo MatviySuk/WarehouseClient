@@ -19,6 +19,8 @@
 		540BFC452A12696D0085D1E0 /* WarehouseChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */; };
 		540BFC472A1393390085D1E0 /* Execution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BFC462A1393390085D1E0 /* Execution.swift */; };
 		542EEF2D2A1533390098E08D /* WorkDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542EEF2C2A1533390098E08D /* WorkDetailedView.swift */; };
+		542EEF2F2A16455B0098E08D /* OLTPMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542EEF2E2A16455B0098E08D /* OLTPMetadata.swift */; };
+		542EEF312A1647580098E08D /* MetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542EEF302A1647580098E08D /* MetadataView.swift */; };
 		54AB330E2A0FB46200C7619E /* WarehouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB330D2A0FB46200C7619E /* WarehouseService.swift */; };
 		54AB33112A0FB4CA00C7619E /* DimDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB33102A0FB4CA00C7619E /* DimDate.swift */; };
 		54AB33132A0FB6C800C7619E /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB33122A0FB6C800C7619E /* Role.swift */; };
@@ -74,6 +76,8 @@
 		540BFC442A12696D0085D1E0 /* WarehouseChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseChartsView.swift; sourceTree = "<group>"; };
 		540BFC462A1393390085D1E0 /* Execution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Execution.swift; sourceTree = "<group>"; };
 		542EEF2C2A1533390098E08D /* WorkDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetailedView.swift; sourceTree = "<group>"; };
+		542EEF2E2A16455B0098E08D /* OLTPMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLTPMetadata.swift; sourceTree = "<group>"; };
+		542EEF302A1647580098E08D /* MetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataView.swift; sourceTree = "<group>"; };
 		54AB330D2A0FB46200C7619E /* WarehouseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseService.swift; sourceTree = "<group>"; };
 		54AB33102A0FB4CA00C7619E /* DimDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimDate.swift; sourceTree = "<group>"; };
 		54AB33122A0FB6C800C7619E /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				540976052A1524E9003F55C7 /* WorkItemView.swift */,
 				540976072A152A4C003F55C7 /* WorkHeaderView.swift */,
 				542EEF2C2A1533390098E08D /* WorkDetailedView.swift */,
+				542EEF302A1647580098E08D /* MetadataView.swift */,
 			);
 			path = WarehouseTables;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 				54C286872A091B49004F4C9F /* Auth */,
 				54C286822A091B3F004F4C9F /* Errors */,
 				540BFC462A1393390085D1E0 /* Execution.swift */,
+				542EEF2E2A16455B0098E08D /* OLTPMetadata.swift */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				542EEF2D2A1533390098E08D /* WorkDetailedView.swift in Sources */,
 				54AB33112A0FB4CA00C7619E /* DimDate.swift in Sources */,
 				54C286842A091B3F004F4C9F /* StringError.swift in Sources */,
+				542EEF2F2A16455B0098E08D /* OLTPMetadata.swift in Sources */,
 				540BFC3F2A125B570085D1E0 /* Array + Unique.swift in Sources */,
 				54C286862A091B46004F4C9F /* User.swift in Sources */,
 				54C2865A2A0919C5004F4C9F /* AuthView.swift in Sources */,
@@ -509,6 +516,7 @@
 				54C286692A091ABE004F4C9F /* Binding + Equatable.swift in Sources */,
 				54C2866C2A091ABE004F4C9F /* Loadable.swift in Sources */,
 				540976022A14EFEB003F55C7 /* RangePickerView.swift in Sources */,
+				542EEF312A1647580098E08D /* MetadataView.swift in Sources */,
 				54AB33192A0FB7E600C7619E /* Project.swift in Sources */,
 				54C2866D2A091ABE004F4C9F /* LazyList.swift in Sources */,
 				54C286722A091B0E004F4C9F /* BaseView.swift in Sources */,

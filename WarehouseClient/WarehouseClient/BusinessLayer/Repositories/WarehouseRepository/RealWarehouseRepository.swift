@@ -34,6 +34,11 @@ struct RealWarehouseRepository: WarehouseRepository {
     func makeCleanUp() -> AnyPublisher<Execution, Error> {
         call(endpoint: API.cleanup)
     }
+    
+    func getOLTPMetadata() -> AnyPublisher<OLTPMetadata, Error> {
+        call(endpoint: API.metadata)
+    }
+
 }
 
 // MARK: - Endpoints
@@ -44,6 +49,7 @@ extension RealWarehouseRepository {
         case fullload
         case newload
         case cleanup
+        case metadata
     }
 }
 
@@ -54,7 +60,7 @@ extension RealWarehouseRepository.API: APICall {
     
     var method: String {
         switch self {
-        case .allworks:
+        case .allworks, .metadata:
             return "GET"
         case .newload, .cleanup, .fullload:
             return "POST"
@@ -67,7 +73,7 @@ extension RealWarehouseRepository.API: APICall {
     
     func body() throws -> Data? {
         switch self {
-        case .allworks:
+        case .allworks, .metadata:
             return nil
         case .fullload, .newload, .cleanup:
             return Data()

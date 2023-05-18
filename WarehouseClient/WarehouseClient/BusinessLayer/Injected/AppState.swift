@@ -15,6 +15,7 @@ extension AppState {
     struct UserData: Equatable {
         var works: Loadable<[FactWorks]> = .notRequested
         var loadInfo: LoadInfo? = nil
+        var oltpMetadata: OLTPMetadata? = nil
     }
 }
 

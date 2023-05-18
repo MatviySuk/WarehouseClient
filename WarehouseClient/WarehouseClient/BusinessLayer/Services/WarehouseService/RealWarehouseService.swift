@@ -58,6 +58,21 @@ struct RealWarehouseService: WarehouseService {
             .store(in: cancelBag)
     }
     
+    func getOLTPMetadata(cancelBag: CancelBag) {
+        webRepository
+            .getOLTPMetadata()
+            .sink(receiveCompletion: { comp in
+                switch comp {
+                case let .failure(error):
+                    print(error)
+                default: break
+                }
+            }, receiveValue: { value in
+                appState[\.userData.oltpMetadata] = value
+            })
+            .store(in: cancelBag)
+    }
+    
     func makeCleanUp(cancelBag: CancelBag) {
         webRepository.makeCleanUp()
             .sinkToLoadable { _ in
